@@ -25,7 +25,7 @@ public class ProductTests
     [InlineData(null)]
     [InlineData(" ")]
     [InlineData("")]
-    public void Constructor_Should_Throw_When_ProductName_Is_Invalid(string name)
+    public void Constructor_Should_Throw_When_ProductName_Is_Invalid(string? name)
     {
         // Arrange 
         decimal price = 100m;

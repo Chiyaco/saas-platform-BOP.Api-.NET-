@@ -8,7 +8,7 @@ public class Product : BaseEntity
 
     private Product() { }
 
-    public Product(string name, decimal price)
+    public Product(string? name, decimal price)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException(nameof(name), "Name is required.");

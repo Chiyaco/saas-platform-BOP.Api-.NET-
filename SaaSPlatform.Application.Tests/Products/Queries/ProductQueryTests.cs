@@ -44,12 +44,12 @@ public class ProductQueryTests
 
        // Act 
 
-       var result = queryHandler.Handle(query, CancellationToken.None);
+       var result = await queryHandler.Handle(query, CancellationToken.None);
 
        // Assert
-
-       result.Result.IsSuccess.Should().BeTrue();
-       result.Result.Value?.Name.Should().Be("Laptop");
-       result.Result.Value?.Price.Should().Be(1000m);
+       result.Should().NotBeNull();
+       result.IsSuccess.Should().BeTrue();
+       result.Value?.Name.Should().Be("Laptop");
+       result.Value?.Price.Should().Be(1000m);
     }
 }

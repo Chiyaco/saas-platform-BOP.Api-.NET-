@@ -15,7 +15,7 @@ public class ProductsCommandTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData(" ")]
-    public void CreateProductCommandValidator_Should_Have_Error_When_Name_Is_Null(string productName)
+    public void CreateProductCommandValidator_Should_Have_Error_When_Name_Is_Null(string? productName)
     {
         // Arrange 
 

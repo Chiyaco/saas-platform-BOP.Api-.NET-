@@ -39,14 +39,14 @@ public class GetCustomerQueriesTests
 
 
         // Act 
-        var result = handler.Handle(query, CancellationToken.None);
+        var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
 
         result.Should().NotBeNull();
-        result.Result.Should().NotBeNull();
-        result.Result.IsSuccess.Should().BeFalse();
-        result.Result.Error.Should().Be("The customer didn't find!");
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeFalse();
+        result.Error.Should().Be("The customer didn't find!");
     }
 
     [Fact]
