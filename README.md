@@ -1,4 +1,4 @@
-📦 SaaSPlatform (.NET 9)
+📦 SaaSPlatform (.NET 10)
 
 A modern multi-tenant SaaS platform built with .NET 9, Clean Architecture, DDD, and CQRS (Phase 1).
 
