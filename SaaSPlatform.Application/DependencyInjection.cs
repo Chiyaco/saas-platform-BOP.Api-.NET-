@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using SaaSPlatform.Application.Abstractions.Interfaces;
 using SaaSPlatform.Application.Common.Behaviors;
 using System.Reflection;
 
@@ -16,6 +17,8 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TenantBehavior<,>));
+
 
         return services;
     }

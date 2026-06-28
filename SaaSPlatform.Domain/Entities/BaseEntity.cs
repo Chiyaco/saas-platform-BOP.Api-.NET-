@@ -4,6 +4,8 @@ public class BaseEntity
 {
     public Guid Id { get; protected set; }
 
+    public Guid TenantId { get; set; }
+
     public DateTime CreatedDateTime { get; protected set; }
 
     public DateTime UpdatedDateTime { get; protected set; }

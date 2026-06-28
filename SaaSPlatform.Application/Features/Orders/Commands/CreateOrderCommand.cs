@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SaaSPlatform.Application.Common.Interfaces;
+using SaaSPlatform.Application.Abstractions.Interfaces;
 using SaaSPlatform.Application.Common.Models;
 using SaaSPlatform.Domain.Entities.Order;
 

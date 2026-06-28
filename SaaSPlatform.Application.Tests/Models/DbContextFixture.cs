@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SaaSPlatform.Application.Abstractions.Interfaces;
 using SaaSPlatform.Infrastructure.Persistence;
+using SaaSPlatform.Infrastructure.Persistence.Authentication;
 
 namespace SaaSPlatform.Application.Tests.Models;
 
@@ -11,6 +14,10 @@ public class DbContextFixture
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
 
-        return new ApplicationDbContext(options);
+        var serviceProvider = new ServiceCollection()
+            .AddScoped<ITenantProvider, FakeTenantProvider>()
+            .BuildServiceProvider();
+
+        return new ApplicationDbContext(options, serviceProvider);
     }
 }

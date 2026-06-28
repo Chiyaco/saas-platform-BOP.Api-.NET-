@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SaaSPlatform.Application.Common.Interfaces;
+using SaaSPlatform.Application.Abstractions.Interfaces;
 using SaaSPlatform.Application.Common.Models;
 using SaaSPlatform.Application.Features.Customers.DTOs;
 using SaaSPlatform.Domain.Entities.Customer;

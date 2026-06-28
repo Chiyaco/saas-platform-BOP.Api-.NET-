@@ -18,16 +18,23 @@ public class Product : BaseEntity
 
         Id = Guid.NewGuid();
         Name = name;
-        Price = price;
         CreatedDateTime = DateTime.Now;
+
+        SetPrice(price);
     }
 
     public void ChangePrice(decimal price)
+    {
+        SetPrice(price);
+
+        Touch();
+    }
+
+    private void SetPrice(decimal price)
     {
         if (price <= 0)
             throw new ArgumentException(nameof(price), "Price must be greater than zero.");
 
         Price = price;
-        Touch();
     }
 }

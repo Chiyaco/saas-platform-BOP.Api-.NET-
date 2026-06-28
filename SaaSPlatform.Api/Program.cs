@@ -1,4 +1,5 @@
 using SaaSPlatform.Application;
+using SaaSPlatform.Application.Abstractions.Interfaces;
 using SaaSPlatform.Infrastructure.Persistence;
 using Scalar.AspNetCore;
 
@@ -14,6 +15,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddApplication();
 
 builder.Services.AddInfrastructurePersistence(builder.Configuration);
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

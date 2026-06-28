@@ -33,23 +33,20 @@ public class ProductQueryTests
 
         await using var dbContext = _dbContextFixture.CreateDbContext();
 
-       var product = await SeedData.CreateRowDataAsync<Product>(dbContext,
-            () => new Product(
-                "Laptop",
-                1000m
-            ));
-        
-       var query = new GetProductByIdQuery(product.Id);
-       var queryHandler = new GetProductByIdQueryHandler(dbContext);
+        var product = await SeedData.CreateRowDataAsync<Product>(dbContext,
+             () => new Product("Laptop", 1000m));
 
-       // Act 
+        var query = new GetProductByIdQuery(product.Id);
+        var queryHandler = new GetProductByIdQueryHandler(dbContext);
 
-       var result = await queryHandler.Handle(query, CancellationToken.None);
+        // Act 
 
-       // Assert
-       result.Should().NotBeNull();
-       result.IsSuccess.Should().BeTrue();
-       result.Value?.Name.Should().Be("Laptop");
-       result.Value?.Price.Should().Be(1000m);
+        var result = await queryHandler.Handle(query, CancellationToken.None);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsSuccess.Should().BeTrue();
+        result.Value?.Name.Should().Be("Laptop");
+        result.Value?.Price.Should().Be(1000m);
     }
 }

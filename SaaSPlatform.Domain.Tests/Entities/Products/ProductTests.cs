@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SaaSPlatform.Domain.Entities.Product;
+using SaaSPlatform.Domain.Entities.Tenants;
 
 namespace SaaSPlatform.Domain.Tests.Entities.Products;
 
@@ -49,6 +50,7 @@ public class ProductTests
     {
         // Arrange 
         var name = "Test";
+        var tenantId = Guid.NewGuid();
 
         // Act
         Action act = () =>

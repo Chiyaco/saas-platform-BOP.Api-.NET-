@@ -26,8 +26,6 @@ public class UpdateCustomerCommandTests
                 "Karimi",
                 new Email("Chia.karimi@gmail.com")));
 
-
-
         var requestDto = new UpdateCustomerCommandDto()
         {
             Id = existedCustomer.Id,

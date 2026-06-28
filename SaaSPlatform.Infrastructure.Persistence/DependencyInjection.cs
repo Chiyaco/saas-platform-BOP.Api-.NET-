@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SaaSPlatform.Application.Common.Interfaces;
+using SaaSPlatform.Application.Abstractions.Interfaces;
+using SaaSPlatform.Infrastructure.Persistence.Authentication;
+using Microsoft.AspNetCore.Http;
 
 namespace SaaSPlatform.Infrastructure.Persistence;
 
@@ -20,6 +22,9 @@ public static class DependencyInjection
 
         services.AddScoped<IApplicationDbContext>(provider =>
             provider.GetRequiredService<ApplicationDbContext>());
+
+
+        services.AddScoped<ITenantProvider, TenantProvider>();
 
         return services;
     }

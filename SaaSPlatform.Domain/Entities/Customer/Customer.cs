@@ -2,6 +2,7 @@
 
 public class Customer : BaseEntity
 {
+
     public string FirstName { get; private set; }
 
     public string LastName { get; private set; }
@@ -15,9 +16,10 @@ public class Customer : BaseEntity
         SetFirstName(firstName);
         SetLastName(lastName);
 
-        Email = email;
 
         Id = Guid.NewGuid();
+        Email = email;
+
         CreatedDateTime = DateTime.UtcNow;
     }
 
@@ -28,6 +30,7 @@ public class Customer : BaseEntity
         Email = email;
         Touch();
     }
+
     public void ChangeEmailAddress(Email email)
     {
         Email = email;

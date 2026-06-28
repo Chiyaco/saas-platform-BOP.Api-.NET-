@@ -72,6 +72,7 @@ public class CustomerTests
         var firstName = "Chia";
         var lastName = string.Empty;
         var email = new Email("chia.karimi@gmail.com");
+        var tenantId = Guid.NewGuid();
 
         // Act
 
