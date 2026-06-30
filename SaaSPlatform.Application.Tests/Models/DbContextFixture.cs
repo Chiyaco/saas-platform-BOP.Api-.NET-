@@ -14,10 +14,8 @@ public class DbContextFixture
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
 
-        var serviceProvider = new ServiceCollection()
-            .AddScoped<ITenantProvider, FakeTenantProvider>()
-            .BuildServiceProvider();
+        var tenantProvider = new FakeTenantProvider();
 
-        return new ApplicationDbContext(options, serviceProvider);
+        return new ApplicationDbContext(options, tenantProvider);
     }
 }

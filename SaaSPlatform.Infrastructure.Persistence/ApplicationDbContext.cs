@@ -13,12 +13,13 @@ namespace SaaSPlatform.Infrastructure.Persistence;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
-    private readonly IServiceProvider _serviceProvider;
+    //private readonly IServiceProvider _serviceProvider;
+    private readonly ITenantProvider _tenantProvider;
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IServiceProvider serviceProvider)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ITenantProvider tenantProvider)
         : base(options)
     {
-        _serviceProvider = serviceProvider;
+        _tenantProvider = tenantProvider;
     }
 
     public DbSet<Customer> Customers => Set<Customer>();
@@ -33,8 +34,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var _tenantProvider = TenantProvider;
-
         foreach (var entry in ChangeTracker.Entries<BaseEntity>())
         {
             if (entry.State == EntityState.Added)
@@ -52,8 +51,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
-        var _tenantProvider = TenantProvider;
-
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (!typeof(BaseEntity).IsAssignableFrom(entityType.ClrType))
@@ -63,18 +60,16 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
                 .GetMethod(nameof(SetTenantFilter), BindingFlags.NonPublic | BindingFlags.Static)!
                 .MakeGenericMethod(entityType.ClrType);
 
-            method.Invoke(null, new object[] { modelBuilder, _tenantProvider });
+            method.Invoke(null, new object[] { modelBuilder, this });
         }
-
     }
 
-    private void SetTenantFilter<TEntity>(ModelBuilder modelBuilder, ITenantProvider tenantContext)
+    private static void SetTenantFilter<TEntity>(ModelBuilder modelBuilder, ApplicationDbContext context)
       where TEntity : BaseEntity
     {
         modelBuilder.Entity<TEntity>()
-            .HasQueryFilter(x => x.TenantId == tenantContext.TenantId);
+            .HasQueryFilter(x => x.TenantId == context.CurrentTenantId);
     }
-    
-    private ITenantProvider TenantProvider 
-        => _serviceProvider.GetRequiredService<ITenantProvider>();
+
+    public Guid CurrentTenantId => _tenantProvider.TenantId;
 }

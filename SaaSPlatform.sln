@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.7.11911.148 stable
+VisualStudioVersion = 18.7.11911.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSPlatform.Web", "SaaSPlatform.Web\SaaSPlatform.Web.csproj", "{B9A37EA7-57C6-44C5-9C77-B727457D0882}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{22595963-2B90-4C4C-AD9D-F1805D547F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22595963-2B90-4C4C-AD9D-F1805D547F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22595963-2B90-4C4C-AD9D-F1805D547F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A37EA7-57C6-44C5-9C77-B727457D0882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A37EA7-57C6-44C5-9C77-B727457D0882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A37EA7-57C6-44C5-9C77-B727457D0882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A37EA7-57C6-44C5-9C77-B727457D0882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{A6560CE3-EC26-4CA1-B41B-C597E87C3367} = {C462B248-A18F-4FD8-8231-59360FC711C4}
 		{47BD9698-C114-4187-A007-BB5C5925F90B} = {C462B248-A18F-4FD8-8231-59360FC711C4}
 		{22595963-2B90-4C4C-AD9D-F1805D547F8D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B9A37EA7-57C6-44C5-9C77-B727457D0882} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0800298-588D-4455-A1FB-DE3C6B36B6A4}

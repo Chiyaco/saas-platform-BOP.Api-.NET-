@@ -12,20 +12,20 @@ public class TenantProvider : ITenantProvider
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public Guid TenantId
-    {
-        get
-        {
-            var tenantId = _httpContextAccessor.HttpContext?
-                .Request.Headers["tenant_id"]
-                .FirstOrDefault();
+    //public Guid TenantId
+    //{
+    //    get
+    //    {
+    //        var tenantId = _httpContextAccessor.HttpContext?
+    //            .Request.Headers["tenant_id"]
+    //            .FirstOrDefault();
 
-            if (string.IsNullOrWhiteSpace(tenantId))
-                throw new UnauthorizedAccessException("Tenant header is missing.");
+    //        if (string.IsNullOrWhiteSpace(tenantId))
+    //            throw new UnauthorizedAccessException("Tenant header is missing.");
 
-            return Guid.Parse(tenantId);
-        }
-    }
+    //        return Guid.Parse(tenantId);
+    //    }
+    //}
 
-    //public Guid TenantId => Guid.Parse("11111111-1111-1111-1111-111111111111");
+    public Guid TenantId => Guid.Parse("11111111-1111-1111-1111-111111111111");
 }
