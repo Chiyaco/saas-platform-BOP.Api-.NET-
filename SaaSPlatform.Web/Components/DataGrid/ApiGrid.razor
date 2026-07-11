@@ -1,0 +1,82 @@
+﻿@typeparam TItem
+
+@inject HttpClient Http
+
+
+
+@if (loading)
+{
+     <Loading />
+}
+else if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <ErrorBox Message="@ErrorMessage" />
+}
+else
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                @foreach (var column in Columns)
+                {
+                    <th>@column.Title</th>
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Items)
+            {
+                <tr>
+
+                    @foreach (var column in Columns)
+                    {
+                        <td>
+                            @column.Value(item)
+                        </td>
+                    }
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+
+
+@code {
+
+    [Parameter]
+    public string Endpoint { get; set; } = "";
+
+
+    [Parameter]
+    public List<GridColumn<TItem>> Columns { get; set; }
+        = new();
+
+    private List<TItem> Items = new();
+
+    private bool loading;
+    private string? ErrorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            loading = true;
+
+            Items = await Http.GetFromJsonAsync<List<TItem>>(Endpoint) ?? new();
+
+            loading = false;
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
+    }
+
+}

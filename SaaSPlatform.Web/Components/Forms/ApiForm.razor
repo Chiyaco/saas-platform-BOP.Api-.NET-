@@ -1,0 +1,35 @@
+﻿@typeparam TItem
+
+
+<EditForm Model="Model" OnValidSubmit="Save">
+
+
+    <DataAnnotationsValidator />
+
+    @ChildContent
+
+    <button class="btn btn-primary">
+        Save
+    </button>
+
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public TItem Model { get; set; } = default!;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<TItem> OnSave { get; set; }
+
+    async Task Save()
+    {
+        await OnSave.InvokeAsync(Model);
+    }
+
+
+
+}

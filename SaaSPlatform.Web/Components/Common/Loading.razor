@@ -1,0 +1,41 @@
+﻿<style>
+
+    .loading-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+    }
+
+
+    .spinner {
+        width: 25px;
+        height: 25px;
+        border: 4px solid #ddd;
+        border-top: 4px solid #333;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+
+    @@keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+</style>
+
+<div class="loading-container">
+
+    <div class="spinner"></div>
+
+    <span>
+        Loading...
+    </span>
+
+</div>

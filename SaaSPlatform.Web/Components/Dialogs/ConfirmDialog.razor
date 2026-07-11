@@ -1,0 +1,56 @@
+﻿@if (Visible)
+{
+
+    <div class="modal">
+
+        <h3>
+            @Message
+        </h3>
+
+
+        <button @onclick="Yes">
+            Yes
+        </button>
+
+
+        <button @onclick="No">
+            No
+        </button>
+
+
+    </div>
+
+}
+
+
+@code {
+
+
+    bool Visible;
+    string Message = "";
+
+    TaskCompletionSource<bool>? source;
+
+    public Task<bool> Show(string message)
+    {
+        Message = message;
+
+        Visible = true;
+
+        source = new();
+
+        return source.Task;
+    }
+
+    void Yes()
+    {
+        Visible = false;
+        source?.SetResult(true);
+    }
+
+    void No()
+    {
+        Visible = false;
+        source?.SetResult(false);
+    }
+}

@@ -1,0 +1,21 @@
+﻿@page "/Products"
+
+<ApiGrid TItem="ProductDto" Endpoint="api/products" Columns="columns"/>
+
+@code {
+
+List<GridColumn<ProductDto>> columns =
+[
+    new()
+    {
+     Title="Date",
+     Value=x=>x.Name
+    },
+    new()
+    {
+     Title="Price",
+     Value=x=>x.Price.ToString()
+    }
+];
+
+}

@@ -1,10 +1,18 @@
+using MudBlazor.Services;
 using SaaSPlatform.Web.Components;
+using SaaSPlatform.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped(typeof(IApiService<>), typeof(ApiService<>));
+builder.Services.AddSingleton<FakeProductService>();
+builder.Services.AddMudServices();
+
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
